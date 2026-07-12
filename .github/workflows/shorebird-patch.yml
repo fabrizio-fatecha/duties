@@ -1,0 +1,34 @@
+name: Shorebird Patch
+
+# Publishes an over-the-air update every time app code lands on main, so
+# installs built from a Shorebird release pick up the change automatically.
+#
+# One-time setup before this workflow can run (see docs/SHOREBIRD_SETUP.md):
+#   1. shorebird login
+#   2. shorebird init
+#   3. shorebird release android   (the baseline that patches apply on top of)
+#   4. Generate a CI token at https://console.shorebird.dev and add it as the
+#      repo secret SHOREBIRD_TOKEN (Settings -> Secrets and variables -> Actions).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'lib/**'
+      - 'pubspec.yaml'
+      - 'assets/**'
+
+jobs:
+  patch-android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shorebirdtech/setup-shorebird@v1
+
+      - name: Publish Shorebird patch (Android)
+        env:
+          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+        # --json puts the CLI in non-interactive mode. Double-check this flag
+        # against `shorebird patch --help` if the CLI version changes.
+        run: shorebird patch android --release-version=latest --allow-asset-diffs --json
