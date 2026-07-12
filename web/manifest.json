@@ -1,11 +1,11 @@
 {
-    "name": "csv_search_app",
-    "short_name": "csv_search_app",
+    "name": "Duties",
+    "short_name": "Duties",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0D0D0D",
     "theme_color": "#FF7A1A",
-    "description": "A new Flutter project.",
+    "description": "Duties — offline search for Ecuador's NCM tariff schedule.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

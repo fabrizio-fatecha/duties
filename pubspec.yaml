@@ -1,7 +1,7 @@
-name: csv_search_app
+name: duties
 description: Offline search/filter app over a bundled CSV tariff dataset.
 publish_to: 'none'
-version: 1.0.0+1
+version: 1.1.0+2
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
@@ -43,7 +43,12 @@ flutter_launcher_icons:
 flutter_native_splash:
   color: "#0D0D0D"
   image: assets/icon/splash_logo.png
+  branding: assets/icon/branding.png
+  branding_mode: bottom
+  branding_bottom_padding: 40
   android_12:
     color: "#0D0D0D"
     image: assets/icon/splash_logo.png
+    branding: assets/icon/branding.png
+    branding_bottom_padding: 40
   web: false

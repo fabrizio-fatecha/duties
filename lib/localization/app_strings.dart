@@ -46,7 +46,7 @@ class AppStrings {
       this == _en ? 'Page $current of $total' : 'Página $current de $total';
 
   static const _en = AppStrings._(
-    appTitle: 'Tariff Code Search',
+    appTitle: 'Duties',
     searchHint: 'Search by description or NCM code',
     noResults: 'No results found',
     filters: 'Filters',
@@ -65,7 +65,7 @@ class AppStrings {
   );
 
   static const _es = AppStrings._(
-    appTitle: 'Búsqueda de Códigos Arancelarios',
+    appTitle: 'Duties',
     searchHint: 'Buscar por descripción o código NCM',
     noResults: 'No se encontraron resultados',
     filters: 'Filtros',

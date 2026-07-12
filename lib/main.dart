@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => LocaleProvider()),
       ],
       child: MaterialApp(
-        title: 'Tariff Code Search',
+        title: 'Duties',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: true,

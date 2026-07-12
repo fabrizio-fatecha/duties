@@ -1,4 +1,4 @@
-package com.example.csv_search_app
+package com.example.duties
 
 import io.flutter.embedding.android.FlutterActivity
 
