@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 
 import 'providers/locale_provider.dart';
@@ -6,7 +7,16 @@ import 'providers/search_provider.dart';
 import 'screens/search_screen.dart';
 import 'services/data_repository.dart';
 
+const _minSplashDuration = Duration(seconds: 5);
+
 void main() {
+  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  // Keep the splash (and the "Developed by Fabrizio Fatecha" credit) on
+  // screen for a fixed minimum time, regardless of how fast the device is.
+  Future.delayed(_minSplashDuration, FlutterNativeSplash.remove);
+
   runApp(const MyApp());
 }
 

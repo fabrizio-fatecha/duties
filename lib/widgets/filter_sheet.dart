@@ -21,7 +21,6 @@ class FilterSheet extends StatelessWidget {
     final strings = context.watch<LocaleProvider>().strings;
     final fields = {
       'aec': strings.aecRate,
-      'iva': strings.vatIva,
       'regimen': strings.regime,
     };
 

@@ -22,7 +22,7 @@ class ResultsList extends StatelessWidget {
     final page = provider.pageResults;
     return ListView.builder(
       itemCount: page.length,
-      itemBuilder: (context, index) => ResultTile(record: page[index]),
+      itemBuilder: (context, index) => ResultTile(record: page[index], isEven: index.isEven),
     );
   }
 }

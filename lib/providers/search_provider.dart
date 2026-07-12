@@ -17,7 +17,6 @@ class SearchProvider extends ChangeNotifier {
   String query = '';
   final Map<String, String?> filters = {
     'aec': null,
-    'iva': null,
     'regimen': null,
   };
 

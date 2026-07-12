@@ -6,7 +6,7 @@ import 'csv_loader.dart';
 /// Builds a value -> row-indices index per filterable field so filtering
 /// is a set lookup/intersection instead of a full list scan.
 class DataRepository {
-  static const filterFields = ['aec', 'iva', 'regimen'];
+  static const filterFields = ['aec', 'regimen'];
 
   List<TariffRecord> _records = [];
   final Map<String, Map<String, Set<int>>> _index = {
@@ -24,7 +24,6 @@ class DataRepository {
     for (var i = 0; i < _records.length; i++) {
       final record = _records[i];
       _addToIndex('aec', record.aec, i);
-      _addToIndex('iva', record.iva, i);
       _addToIndex('regimen', record.regimen, i);
     }
   }
