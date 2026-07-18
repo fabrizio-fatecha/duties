@@ -18,6 +18,7 @@ class PhotoScreen extends StatefulWidget {
 class _PhotoScreenState extends State<PhotoScreen> {
   final _classifier = PhotoClassifierService();
   bool _isProcessing = false;
+  bool _isDownloadingModel = false;
 
   Future<void> _takePhoto() async {
     final strings = context.read<LocaleProvider>().strings;
@@ -34,9 +35,17 @@ class _PhotoScreenState extends State<PhotoScreen> {
     setState(() => _isProcessing = true);
 
     try {
-      final result = await _classifier.classify(File(picked.path));
+      final result = await _classifier.classify(
+        File(picked.path),
+        onDownloadingModel: () {
+          if (mounted) setState(() => _isDownloadingModel = true);
+        },
+      );
       if (!mounted) return;
-      setState(() => _isProcessing = false);
+      setState(() {
+        _isProcessing = false;
+        _isDownloadingModel = false;
+      });
 
       if (result == null) {
         _showMessage(strings.photoNoMatch);
@@ -45,7 +54,10 @@ class _PhotoScreenState extends State<PhotoScreen> {
       }
     } catch (_) {
       if (!mounted) return;
-      setState(() => _isProcessing = false);
+      setState(() {
+        _isProcessing = false;
+        _isDownloadingModel = false;
+      });
       _showMessage(strings.genericError);
     }
   }
@@ -61,7 +73,11 @@ class _PhotoScreenState extends State<PhotoScreen> {
     return Scaffold(
       appBar: AppBar(title: Text(strings.appTitle)),
       body: Center(
-        child: _isProcessing ? _LoadingIndicator(message: strings.processingPhoto) : _CaptureButton(
+        child: _isProcessing
+            ? _LoadingIndicator(
+                message: _isDownloadingModel ? strings.downloadingModel : strings.processingPhoto,
+              )
+            : _CaptureButton(
           instructions: strings.photoInstructions,
           buttonLabel: strings.takePhoto,
           onPressed: _takePhoto,

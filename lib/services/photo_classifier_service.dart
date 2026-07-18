@@ -6,9 +6,13 @@ import 'package:google_mlkit_translation/google_mlkit_translation.dart';
 /// Classifies a photo on-device (English label) and translates it to
 /// Spanish, also on-device. Returns null if no confident label was found.
 class PhotoClassifierService {
-  Future<String?> classify(File image) async {
+  final _modelManager = OnDeviceTranslatorModelManager();
+
+  Future<String?> classify(File image, {void Function()? onDownloadingModel}) async {
     final label = await _topLabel(image);
     if (label == null) return null;
+
+    await _ensureModelsDownloaded(onDownloadingModel);
     return _translateToSpanish(label);
   }
 
@@ -20,6 +24,24 @@ class PhotoClassifierService {
       return labels.first.label;
     } finally {
       await labeler.close();
+    }
+  }
+
+  /// The translation models aren't bundled in the app — they download on
+  /// first use. The library defaults to requiring Wi-Fi for that download,
+  /// which silently fails (and throws) on mobile data. Downloading them
+  /// explicitly with isWifiRequired: false avoids that.
+  Future<void> _ensureModelsDownloaded(void Function()? onDownloading) async {
+    final englishReady = await _modelManager.isModelDownloaded(TranslateLanguage.english.bcpCode);
+    final spanishReady = await _modelManager.isModelDownloaded(TranslateLanguage.spanish.bcpCode);
+    if (englishReady && spanishReady) return;
+
+    onDownloading?.call();
+    if (!englishReady) {
+      await _modelManager.downloadModel(TranslateLanguage.english.bcpCode, isWifiRequired: false);
+    }
+    if (!spanishReady) {
+      await _modelManager.downloadModel(TranslateLanguage.spanish.bcpCode, isWifiRequired: false);
     }
   }
 

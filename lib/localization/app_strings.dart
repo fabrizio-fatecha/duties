@@ -29,6 +29,7 @@ class AppStrings {
     required this.searchAction,
     required this.photoNoMatch,
     required this.genericError,
+    required this.downloadingModel,
   });
 
   final String appTitle;
@@ -56,6 +57,7 @@ class AppStrings {
   final String searchAction;
   final String photoNoMatch;
   final String genericError;
+  final String downloadingModel;
 
   String resultsCount(int count) =>
       this == _en ? '$count results' : '$count resultados';
@@ -89,6 +91,7 @@ class AppStrings {
     searchAction: 'Search',
     photoNoMatch: "Couldn't identify the object. Try another photo.",
     genericError: 'An error occurred.',
+    downloadingModel: 'Downloading translation model (first time only)...',
   );
 
   static const _es = AppStrings._(
@@ -117,6 +120,7 @@ class AppStrings {
     searchAction: 'Buscar',
     photoNoMatch: 'No se pudo identificar el objeto. Probá con otra foto.',
     genericError: 'Ha ocurrido un error.',
+    downloadingModel: 'Descargando modelo de traducción (solo la primera vez)...',
   );
 
   static AppStrings of(AppLanguage language) =>
