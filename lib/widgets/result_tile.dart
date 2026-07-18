@@ -18,7 +18,7 @@ class ResultTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final strings = context.watch<LocaleProvider>().strings;
 
-    return Container(
+    return Material(
       color: isEven ? _rowColorA : _rowColorB,
       child: ListTile(
         title: Text(record.description),

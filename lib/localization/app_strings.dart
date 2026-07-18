@@ -20,6 +20,15 @@ class AppStrings {
     required this.ncmLabel,
     required this.descriptionLabel,
     required this.emptyValue,
+    required this.searchTab,
+    required this.photoTab,
+    required this.photoInstructions,
+    required this.takePhoto,
+    required this.processingPhoto,
+    required this.photoResultTitle,
+    required this.searchAction,
+    required this.photoNoMatch,
+    required this.genericError,
   });
 
   final String appTitle;
@@ -38,6 +47,15 @@ class AppStrings {
   final String ncmLabel;
   final String descriptionLabel;
   final String emptyValue;
+  final String searchTab;
+  final String photoTab;
+  final String photoInstructions;
+  final String takePhoto;
+  final String processingPhoto;
+  final String photoResultTitle;
+  final String searchAction;
+  final String photoNoMatch;
+  final String genericError;
 
   String resultsCount(int count) =>
       this == _en ? '$count results' : '$count resultados';
@@ -62,6 +80,15 @@ class AppStrings {
     ncmLabel: 'NCM code',
     descriptionLabel: 'Description',
     emptyValue: '—',
+    searchTab: 'Search',
+    photoTab: 'Photo',
+    photoInstructions: 'Take a photo of an object to search for it',
+    takePhoto: 'Take photo',
+    processingPhoto: 'Analyzing photo...',
+    photoResultTitle: 'Detected',
+    searchAction: 'Search',
+    photoNoMatch: "Couldn't identify the object. Try another photo.",
+    genericError: 'An error occurred.',
   );
 
   static const _es = AppStrings._(
@@ -81,6 +108,15 @@ class AppStrings {
     ncmLabel: 'Código NCM',
     descriptionLabel: 'Descripción',
     emptyValue: '—',
+    searchTab: 'Buscar',
+    photoTab: 'Foto',
+    photoInstructions: 'Sacá una foto de un objeto para buscarlo',
+    takePhoto: 'Tomar foto',
+    processingPhoto: 'Analizando foto...',
+    photoResultTitle: 'Detectado',
+    searchAction: 'Buscar',
+    photoNoMatch: 'No se pudo identificar el objeto. Probá con otra foto.',
+    genericError: 'Ha ocurrido un error.',
   );
 
   static AppStrings of(AppLanguage language) =>

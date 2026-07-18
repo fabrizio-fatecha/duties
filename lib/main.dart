@@ -4,7 +4,8 @@ import 'package:provider/provider.dart';
 
 import 'providers/locale_provider.dart';
 import 'providers/search_provider.dart';
-import 'screens/search_screen.dart';
+import 'providers/tab_provider.dart';
+import 'screens/root_shell.dart';
 import 'services/data_repository.dart';
 
 const _minSplashDuration = Duration(seconds: 5);
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => SearchProvider(DataRepository())..init()),
         ChangeNotifierProvider(create: (_) => LocaleProvider()),
+        ChangeNotifierProvider(create: (_) => TabProvider()),
       ],
       child: MaterialApp(
         title: 'Duties',
@@ -45,7 +47,7 @@ class MyApp extends StatelessWidget {
             foregroundColor: Color(0xFFFF7A1A),
           ),
         ),
-        home: const SearchScreen(),
+        home: const RootShell(),
       ),
     );
   }
