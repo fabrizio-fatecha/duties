@@ -8,6 +8,7 @@ import '../providers/locale_provider.dart';
 
 void showRecordDetailDialog(BuildContext context, TariffRecord record) {
   final strings = context.read<LocaleProvider>().strings;
+  final fields = _fields(record, strings);
 
   showDialog<void>(
     context: context,
@@ -18,17 +19,13 @@ void showRecordDetailDialog(BuildContext context, TariffRecord record) {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _DetailRow(label: strings.ncmLabel, value: record.ncm),
-            _DetailRow(label: strings.descriptionLabel, value: record.description),
-            _DetailRow(label: strings.aecRate, value: _orEmpty(record.aec, strings)),
-            _DetailRow(label: strings.vatIva, value: _orEmpty(record.iva, strings)),
-            _DetailRow(label: strings.regime, value: _orEmpty(record.regimen, strings)),
+            for (final field in fields) _DetailRow(label: field.key, value: field.value),
           ],
         ),
       ),
       actions: [
         TextButton.icon(
-          onPressed: () => _copyRecord(context, record, strings),
+          onPressed: () => _copyRecord(context, fields, strings),
           icon: const Icon(Icons.copy_all_outlined),
           label: Text(strings.copy),
         ),
@@ -41,16 +38,26 @@ void showRecordDetailDialog(BuildContext context, TariffRecord record) {
   );
 }
 
+/// Every column from the CSV, in source order, label -> value.
+List<MapEntry<String, String>> _fields(TariffRecord record, AppStrings strings) => [
+      MapEntry(strings.ncmLabel, record.ncm),
+      MapEntry(strings.descriptionLabel, record.description),
+      MapEntry(strings.aecRate, _orEmpty(record.aec, strings)),
+      MapEntry(strings.anvLabel, _orEmpty(record.anv, strings)),
+      MapEntry(strings.omcLabel, _orEmpty(record.omc, strings)),
+      MapEntry(strings.listaLabel, _orEmpty(record.lista, strings)),
+      MapEntry(strings.intraLabel, _orEmpty(record.intra, strings)),
+      MapEntry(strings.extraLabel, _orEmpty(record.extra, strings)),
+      MapEntry(strings.vatIva, _orEmpty(record.iva, strings)),
+      MapEntry(strings.rentaLabel, _orEmpty(record.renta, strings)),
+      MapEntry(strings.iscLabel, _orEmpty(record.isc, strings)),
+      MapEntry(strings.regime, _orEmpty(record.regimen, strings)),
+    ];
+
 String _orEmpty(String value, AppStrings strings) => value.isEmpty ? strings.emptyValue : value;
 
-void _copyRecord(BuildContext context, TariffRecord record, AppStrings strings) {
-  final text = [
-    '${strings.ncmLabel}: ${record.ncm}',
-    '${strings.descriptionLabel}: ${record.description}',
-    '${strings.aecRate}: ${_orEmpty(record.aec, strings)}',
-    '${strings.vatIva}: ${_orEmpty(record.iva, strings)}',
-    '${strings.regime}: ${_orEmpty(record.regimen, strings)}',
-  ].join('\n');
+void _copyRecord(BuildContext context, List<MapEntry<String, String>> fields, AppStrings strings) {
+  final text = fields.map((field) => '${field.key}: ${field.value}').join('\n');
 
   Clipboard.setData(ClipboardData(text: text));
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(strings.copied)));

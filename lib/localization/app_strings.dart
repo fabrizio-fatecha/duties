@@ -9,7 +9,14 @@ class AppStrings {
     required this.noResults,
     required this.filters,
     required this.aecRate,
+    required this.anvLabel,
+    required this.omcLabel,
+    required this.listaLabel,
+    required this.intraLabel,
+    required this.extraLabel,
     required this.vatIva,
+    required this.rentaLabel,
+    required this.iscLabel,
     required this.regime,
     required this.allOption,
     required this.clearAll,
@@ -37,7 +44,14 @@ class AppStrings {
   final String noResults;
   final String filters;
   final String aecRate;
+  final String anvLabel;
+  final String omcLabel;
+  final String listaLabel;
+  final String intraLabel;
+  final String extraLabel;
   final String vatIva;
+  final String rentaLabel;
+  final String iscLabel;
   final String regime;
   final String allOption;
   final String clearAll;
@@ -71,7 +85,14 @@ class AppStrings {
     noResults: 'No results found',
     filters: 'Filters',
     aecRate: 'AEC rate',
+    anvLabel: 'ANV',
+    omcLabel: 'OMC',
+    listaLabel: 'LISTA',
+    intraLabel: 'INTRA',
+    extraLabel: 'EXTRA',
     vatIva: 'VAT (IVA)',
+    rentaLabel: 'RENTA',
+    iscLabel: 'ISC',
     regime: 'Regime',
     allOption: 'All',
     clearAll: 'Clear all',
@@ -100,7 +121,14 @@ class AppStrings {
     noResults: 'No se encontraron resultados',
     filters: 'Filtros',
     aecRate: 'Tasa AEC',
+    anvLabel: 'ANV',
+    omcLabel: 'OMC',
+    listaLabel: 'LISTA',
+    intraLabel: 'INTRA',
+    extraLabel: 'EXTRA',
     vatIva: 'IVA',
+    rentaLabel: 'RENTA',
+    iscLabel: 'ISC',
     regime: 'Régimen',
     allOption: 'Todos',
     clearAll: 'Limpiar todo',

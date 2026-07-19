@@ -1,7 +1,7 @@
 name: duties
 description: Offline search/filter app over a bundled CSV tariff dataset.
 publish_to: 'none'
-version: 1.2.0+3
+version: 1.4.0+4
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
