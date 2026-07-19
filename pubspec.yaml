@@ -1,7 +1,7 @@
 name: duties
 description: Offline search/filter app over a bundled CSV tariff dataset.
 publish_to: 'none'
-version: 1.4.0+4
+version: 1.5.0+5
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
@@ -15,6 +15,7 @@ dependencies:
   image_picker: ^1.2.3
   google_mlkit_image_labeling: ^0.15.0
   google_mlkit_translation: ^0.14.0
+  path_provider: ^2.1.6
 
 dev_dependencies:
   flutter_test:

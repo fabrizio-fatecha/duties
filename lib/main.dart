@@ -3,6 +3,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 
 import 'providers/locale_provider.dart';
+import 'providers/notes_provider.dart';
 import 'providers/search_provider.dart';
 import 'providers/tab_provider.dart';
 import 'screens/root_shell.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => SearchProvider(DataRepository())..init()),
         ChangeNotifierProvider(create: (_) => LocaleProvider()),
         ChangeNotifierProvider(create: (_) => TabProvider()),
+        ChangeNotifierProvider(create: (_) => NotesProvider()..init()),
       ],
       child: MaterialApp(
         title: 'Duties',

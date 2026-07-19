@@ -37,6 +37,10 @@ class AppStrings {
     required this.photoNoMatch,
     required this.genericError,
     required this.downloadingModel,
+    required this.notesLabel,
+    required this.notesHint,
+    required this.saveNote,
+    required this.noteSaved,
   });
 
   final String appTitle;
@@ -72,6 +76,10 @@ class AppStrings {
   final String photoNoMatch;
   final String genericError;
   final String downloadingModel;
+  final String notesLabel;
+  final String notesHint;
+  final String saveNote;
+  final String noteSaved;
 
   String resultsCount(int count) =>
       this == _en ? '$count results' : '$count resultados';
@@ -113,6 +121,10 @@ class AppStrings {
     photoNoMatch: "Couldn't identify the object. Try another photo.",
     genericError: 'An error occurred.',
     downloadingModel: 'Downloading translation model (first time only)...',
+    notesLabel: 'My notes',
+    notesHint: 'Write a note for this record...',
+    saveNote: 'Save note',
+    noteSaved: 'Note saved',
   );
 
   static const _es = AppStrings._(
@@ -149,6 +161,10 @@ class AppStrings {
     photoNoMatch: 'No se pudo identificar el objeto. Probá con otra foto.',
     genericError: 'Ha ocurrido un error.',
     downloadingModel: 'Descargando modelo de traducción (solo la primera vez)...',
+    notesLabel: 'Mis notas',
+    notesHint: 'Escribí una nota para este registro...',
+    saveNote: 'Guardar nota',
+    noteSaved: 'Nota guardada',
   );
 
   static AppStrings of(AppLanguage language) =>
